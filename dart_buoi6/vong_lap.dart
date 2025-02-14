@@ -13,11 +13,11 @@ void main(List<String> args) {
     // if (number == 50) {
     //   break; // dừng vòng lặp ngay tại vị trí này
     // }
-
-    print(number);
     if (number == 50) {
       continue; // bỏ qua những lệnh phía dưới vòng lặp chạy tiếp vòng tiếp theo
     }
+
+    print(number);
   }
 
   // do while , while
