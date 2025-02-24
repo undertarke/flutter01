@@ -4,7 +4,7 @@ void main(List<String> args) {
   // generic type
   List<Student> listSinhVien = [];
 
-  Student student = Student();
+  // Student student = Student();
 
   var thoatCT = 0;
   while (thoatCT != 4) {
