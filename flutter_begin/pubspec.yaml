@@ -1,7 +1,7 @@
 name: flutter_buoi11
 description: "A new Flutter project."
 
-publish_to: 'none' 
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -17,14 +17,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
- 
   flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
 
-# setup sử dụng font bên ngoài
+  # setup sử dụng font bên ngoài
   fonts:
     - family: Playwrite # đặt tên font
-      fonts: 
+      fonts:
         - asset: assets/fonts/playwrite.ttf # đường dẫn trỏ tới file font
+    - family: stencil
+      fonts:
+        - asset: assets/fonts/stencil.ttf
