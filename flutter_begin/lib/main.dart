@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_buoi11/baitap_column_row2.dart';
 import 'package:flutter_buoi11/baitao_column_row3.dart';
 import 'package:flutter_buoi11/baitap_column_row.dart';
+import 'package:flutter_buoi11/baitap_column_row4.dart';
+import 'package:flutter_buoi11/baitap_column_row5.dart';
 import 'package:flutter_buoi11/baitap_profile.dart';
 
 void main() {
@@ -15,14 +17,52 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Profile card"),
-        ),
+        // backgroundColor: Colors.black87,
+        // appBar: AppBar(
+        //   title: Text("Profile card"),
+        // ),
         body: SafeArea(
-          child: BaiTapColumnRow3(), // Main Page
+          child: StackWidget(), // Main Page
         ),
       ),
       debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+// buoi 18
+class StackWidget extends StatelessWidget {
+  const StackWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // thứ tự trên xuống dưới => những item phía dưới chồng lên các item phía trên
+    return Stack(
+      children: [
+        Container(
+          color: Colors.blue,
+          width: 500,
+          height: 500,
+        ),
+        Positioned(
+          top: 10, // khai báo cách phía dưới 0px
+          right: 30,
+          child: Container(
+            color: Colors.yellow,
+            width: 100,
+            height: 100,
+          ),
+        ),
+        Positioned(
+          top: 20, // khai báo cách phía dưới 0px
+          right: 40,
+          child: Container(
+            color: Colors.red,
+            width: 100,
+            height: 100,
+          ),
+        ),
+      ],
     );
   }
 }
