@@ -5,6 +5,7 @@ import 'package:flutter_buoi11/baitap_column_row.dart';
 import 'package:flutter_buoi11/baitap_column_row4.dart';
 import 'package:flutter_buoi11/baitap_column_row5.dart';
 import 'package:flutter_buoi11/baitap_profile.dart';
+import 'package:flutter_buoi11/baitap_stack.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         //   title: Text("Profile card"),
         // ),
         body: SafeArea(
-          child: StackWidget(), // Main Page
+          child: BaiTapStack(), // Main Page
         ),
       ),
       debugShowCheckedModeBanner: false,
