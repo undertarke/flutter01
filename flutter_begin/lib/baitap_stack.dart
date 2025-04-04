@@ -7,9 +7,10 @@ class BaiTapStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      scrollDirection: Axis.horizontal, // cuộn theo chiều ngang
       child: Align(
         alignment: Alignment.center,
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Stack(
