@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_buoi11/baitao_gridview.dart';
 import 'package:flutter_buoi11/baitap_column_row2.dart';
 import 'package:flutter_buoi11/baitao_column_row3.dart';
 import 'package:flutter_buoi11/baitap_column_row.dart';
 import 'package:flutter_buoi11/baitap_column_row4.dart';
 import 'package:flutter_buoi11/baitap_column_row5.dart';
 import 'package:flutter_buoi11/baitap_listview.dart';
+import 'package:flutter_buoi11/baitap_listview2.dart';
 import 'package:flutter_buoi11/baitap_profile.dart';
 import 'package:flutter_buoi11/baitap_stack.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,10 +27,204 @@ class MyApp extends StatelessWidget {
         //   title: Text("Profile card"),
         // ),
         body: SafeArea(
-          child: BaiTapListView(), // Main Page
+          child: CustomScrollViewWidget(), // Main Page
         ),
       ),
       debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+// buoi 21:
+class CustomScrollViewWidget extends StatelessWidget {
+  const CustomScrollViewWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        
+        // GridView()
+        SliverGrid(
+          delegate: SliverChildBuilderDelegate(
+            childCount: 30,
+            (context, index) {
+              return listTitleDemo();
+            },
+          ),
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        ),
+
+        // ListView()
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            childCount: 5,
+            (context, index) {
+              return listTitleDemo();
+            },
+          ),
+        ),
+        // widget hiển thị nội dung
+        SliverToBoxAdapter(
+          child: Text("Demo 1"),
+        ),
+        SliverToBoxAdapter(
+          child: Image.network("https://picsum.photos/200/200?random=true"),
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+              listTitleDemo(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+Widget listTitleDemo() {
+  return ListTile(
+    leading: ClipRRect(
+      child: Image.network("https://picsum.photos/300/300"),
+    ),
+    title: Text("Macbook pro 16 inch"),
+    subtitle: Text("RAM 24G, M4 pro"),
+    trailing: Icon(FontAwesomeIcons.cartArrowDown),
+    onTap: () {
+      print("click list title");
+    }, // sự kiện Click
+  );
+}
+
+class GridViewDelegate extends StatelessWidget {
+  const GridViewDelegate({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
+      ),
+      itemCount: 100,
+      itemBuilder: (context, index) {
+        return Card(
+          child: Text("item $index"),
+        );
+      },
+    );
+  }
+}
+
+class GridViewExtentWdiget extends StatelessWidget {
+  const GridViewExtentWdiget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // định nghĩa số lượng cột item theo kích thước màn hình
+    return GridView.extent(
+      maxCrossAxisExtent: 150,
+      mainAxisSpacing: 20, // khoảng cách theo trục ngang
+      crossAxisSpacing: 20, // khoảng cách theo trục dọc
+      childAspectRatio:
+          0.8, //  <1: chữ nhật nằm dọc ,  1: vuông, >1: chữ nhật nằm ngang
+      children: [
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.red,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.green,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.yellow,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.red,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.green,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.yellow,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.red,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.green,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.yellow,
+        ),
+      ],
+    );
+  }
+}
+
+class GridViewWdiget extends StatelessWidget {
+  const GridViewWdiget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // cuộn danh sách theo dạng lưới
+    return GridView.count(
+      crossAxisCount: 2, // số cột hiển thị trên giao diện
+      mainAxisSpacing: 20, // khoảng cách theo trục ngang
+      crossAxisSpacing: 20, // khoảng cách theo trục dọc
+      childAspectRatio:
+          0.8, //  <1: chữ nhật nằm dọc ,  1: vuông, >1: chữ nhật nằm ngang
+      children: [
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.red,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.green,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.yellow,
+        ),
+      ],
     );
   }
 }
