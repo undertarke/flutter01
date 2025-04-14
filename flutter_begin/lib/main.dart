@@ -5,6 +5,7 @@ import 'package:flutter_buoi11/baitao_column_row3.dart';
 import 'package:flutter_buoi11/baitap_column_row.dart';
 import 'package:flutter_buoi11/baitap_column_row4.dart';
 import 'package:flutter_buoi11/baitap_column_row5.dart';
+import 'package:flutter_buoi11/baitap_customscrollview.dart';
 import 'package:flutter_buoi11/baitap_listview.dart';
 import 'package:flutter_buoi11/baitap_listview2.dart';
 import 'package:flutter_buoi11/baitap_profile.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         //   title: Text("Profile card"),
         // ),
         body: SafeArea(
-          child: CustomScrollViewWidget(), // Main Page
+          child: BaiTapCustomScrollView(), // Main Page
         ),
       ),
       debugShowCheckedModeBanner: false,
@@ -43,53 +44,108 @@ class CustomScrollViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        
-        // GridView()
         SliverGrid(
-          delegate: SliverChildBuilderDelegate(
-            childCount: 30,
-            (context, index) {
-              return listTitleDemo();
-            },
+            delegate: SliverChildListDelegate(
+
+              [
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.red,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.yellow,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.red,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.yellow,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.red,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.yellow,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.red,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.yellow,
+                ),
+              ],
+            ),
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 150)),
+
+        // giúp hiện thị các widget hiển thị cơ bản
+        SliverToBoxAdapter(
+          child: Card(
+            child: Text("data"),
           ),
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
         ),
 
-        // ListView()
+        // hiển thị danh sách giống  ListView
         SliverList(
-          delegate: SliverChildBuilderDelegate(
-            childCount: 5,
-            (context, index) {
-              return listTitleDemo();
-            },
-          ),
-        ),
-        // widget hiển thị nội dung
-        SliverToBoxAdapter(
-          child: Text("Demo 1"),
-        ),
-        SliverToBoxAdapter(
-          child: Image.network("https://picsum.photos/200/200?random=true"),
-        ),
-        SliverList(
+          
           delegate: SliverChildListDelegate(
+
             [
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
-              listTitleDemo(),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.red,
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.yellow,
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.red,
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.yellow,
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.red,
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.yellow,
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.red,
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.yellow,
+              ),
             ],
           ),
         ),
