@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stateful/baitap_calculator.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +13,163 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: SafeArea(child: BaiTapButtonWidget())),
+      home: Scaffold(
+        body: SafeArea(child: TextFormWidget()),
+        // backgroundColor: Colors.black,
+      ),
+    );
+  }
+}
+
+// buoi 24
+
+class TextFormWidget extends StatefulWidget {
+  const TextFormWidget({super.key});
+
+  @override
+  State<TextFormWidget> createState() => _TextFormWidgetState();
+}
+
+class _TextFormWidgetState extends State<TextFormWidget> {
+  var checkDart = false;
+  var checkFlutter = false;
+  var checkHTML = false;
+
+  var radioGroup = "0";
+
+  @override
+  Widget build(BuildContext context) {
+    var lstDropdown = [
+      {"id": 0, "value": "Nam"},
+      {"id": 1, "value": "Nữ"},
+      {"id": 2, "value": "Khác"},
+    ];
+
+    return Column(
+      children: [
+        TextFormField(
+          initialValue:
+              "hello flutter !!!", // nội dung mặc định khi load lần đầu
+          decoration: InputDecoration(
+            labelText: "Họ & tên",
+            hintText:
+                "Nhập vào họ và tên...", //placeholder => hướng dẫn thao tác của user
+            prefixIcon: Icon(FontAwesomeIcons.user),
+            suffixIcon: Icon(FontAwesomeIcons.searchengin),
+            border: OutlineInputBorder(),
+            // enabledBorder: OutlineInputBorder(
+            //   borderSide: BorderSide(color: Colors.green),
+            // ),
+            // filled: true,
+            // fillColor: Colors.red[100],
+          ),
+
+          validator: (value) {
+            print(value);
+          },
+
+          // hoạt động trong widget Form() => khi nhấn nút button (submit)
+          onSaved: (newValue) {
+            print(newValue);
+          },
+          // khi gõ phím => đè (down) phím và thả (up) phím
+          onChanged: (value) {
+            print(value);
+          },
+
+          // tương tự onSaved() => nhấn Enter
+          onFieldSubmitted: (value) {
+            print(value);
+          },
+          // style: TextStyle(fontSize: 40, color: Colors.red),
+        ),
+        SizedBox(height: 20),
+        TextFormField(
+          maxLines: 2,
+          decoration: InputDecoration(border: OutlineInputBorder()),
+        ),
+        SizedBox(height: 20),
+        // load theo định dạng => key: value => list object
+        DropdownButtonFormField(
+          value: 0,
+          decoration: InputDecoration(
+            labelText: "Dropdown",
+            border: OutlineInputBorder(),
+          ),
+          items:
+              lstDropdown.map((item) {
+                return DropdownMenuItem(
+                  child: Text("${item["value"]}"),
+                  value: item["id"],
+                );
+              }).toList(),
+          onChanged: (value) {
+            print("dropdown chọn: $value");
+          },
+        ),
+        SizedBox(height: 20),
+        CheckboxListTile(
+          title: Text("Dart"),
+          value: checkDart,
+          onChanged: (value) {
+            setState(() {
+              checkDart = value!;
+            });
+          },
+        ),
+        CheckboxListTile(
+          title: Text("Flutter"),
+          value: checkFlutter,
+          onChanged: (value) {
+            setState(() {
+              checkFlutter = value!;
+            });
+          },
+        ),
+        CheckboxListTile(
+          title: Text("HTML"),
+          value: checkHTML,
+          onChanged: (value) {
+            setState(() {
+              checkHTML = value!;
+            });
+          },
+        ),
+        SizedBox(height: 20),
+
+
+        RadioListTile(
+          title: Text("Nam"),
+          value: "0",
+          groupValue: radioGroup,
+          onChanged: (value) {
+            setState(() {
+              radioGroup = value!;
+            });
+          },
+        ),
+        RadioListTile(
+          title: Text("Nữ"),
+          value: "1",
+          groupValue: radioGroup,
+          onChanged: (value) {
+            setState(() {
+              radioGroup = value!;
+            });
+          },
+        ),
+        RadioListTile(
+          title: Text("Khác"),
+          value: "2",
+          groupValue: radioGroup,
+          onChanged: (value) {
+            setState(() {
+              radioGroup = value!;
+            });
+          },
+        ),
+        ElevatedButton(onPressed: () {}, child: Text("Button")),
+      ],
     );
   }
 }
@@ -62,7 +220,7 @@ class _BaiTapButtonWidgetState extends State<BaiTapButtonWidget> {
             TextButton(
               onPressed: () {
                 setState(() {
-                   _color = Colors.red;
+                  _color = Colors.red;
                 });
               },
               child: Text(""),
@@ -77,7 +235,7 @@ class _BaiTapButtonWidgetState extends State<BaiTapButtonWidget> {
             TextButton(
               onPressed: () {
                 setState(() {
-                   _color = Colors.yellow;
+                  _color = Colors.yellow;
                 });
               },
               child: Text(""),
