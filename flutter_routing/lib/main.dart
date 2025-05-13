@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_routing/db/ui_db.dart';
 
 import 'package:flutter_routing/pages/page_a.dart';
 import 'package:flutter_routing/pages/page_b.dart';
 import 'package:flutter_routing/pages/page_c.dart';
+
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,18 +38,18 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  var indexPage = 0;
+  var indexPage = 4;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    indexPage = 0;
+    indexPage = 4;
   }
 
   @override
   Widget build(BuildContext context) {
-    var listPage = [HomePage(), PageA(), PageB(), PageC()];
+    var listPage = [HomePage(), PageA(), PageB(), PageC(), Ui_db()];
     return Scaffold(
       // appBar: AppBar(
       //   title: Text("Home Page", style: TextStyle(color: Colors.white)),
@@ -88,9 +92,10 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.details),
             label: "Page B",
           ), // index 2
+          BottomNavigationBarItem(icon: Icon(Icons.cabin), label: "Page C"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.cabin),
-            label: "Page C",
+            icon: Icon(Icons.developer_board),
+            label: "database",
           ), // index 3
         ],
       ),
@@ -99,18 +104,29 @@ class _MainPageState extends State<MainPage> {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  var listProduct = [];
+
+  HomePage({super.key});
+
+  final Uri _url = Uri.parse('https://google.com');
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text("HOME PAGE", style: TextStyle(fontSize: 50)),
+        TextButton(onPressed: _launchUrl, child: Text("đi đến google !")),
         ElevatedButton(
           onPressed: () {
             Navigator.pushNamed(context, "/page-a");
           },
-          child: Text("Page A"),
+          child: Icon(FontAwesomeIcons.usersBetweenLines),
         ),
         ElevatedButton(
           onPressed: () {
