@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_routing/db/ui_db.dart';
+import 'package:flutter_routing/pages/danh_ba.dart';
 
 import 'package:flutter_routing/pages/page_a.dart';
 import 'package:flutter_routing/pages/page_b.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/page-a': (context) => PageA(),
         '/page-b': (context) => PageB(),
         '/page-c': (context) => PageC(),
+        '/danh-ba': (context) => BaiTapDanhBa(),
       },
       debugShowCheckedModeBanner: false,
     );
@@ -49,7 +51,14 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    var listPage = [HomePage(), PageA(), PageB(), PageC(), Ui_db()];
+    var listPage = [
+      HomePage(),
+      PageA(),
+      PageB(),
+      PageC(),
+      BaiTapDanhBa(),
+      Ui_db(),
+    ];
     return Scaffold(
       // appBar: AppBar(
       //   title: Text("Home Page", style: TextStyle(color: Colors.white)),
@@ -93,6 +102,7 @@ class _MainPageState extends State<MainPage> {
             label: "Page B",
           ), // index 2
           BottomNavigationBarItem(icon: Icon(Icons.cabin), label: "Page C"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "Danh bạ"),
           BottomNavigationBarItem(
             icon: Icon(Icons.developer_board),
             label: "database",
