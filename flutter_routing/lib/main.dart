@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_routing/db/ui_db.dart';
 import 'package:flutter_routing/pages/danh_ba.dart';
+import 'package:flutter_routing/pages/home_shoe.dart';
 
 import 'package:flutter_routing/pages/page_a.dart';
 import 'package:flutter_routing/pages/page_b.dart';
@@ -40,13 +41,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  var indexPage = 4;
+  var indexPage = 5;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    indexPage = 4;
+    indexPage = 5;
   }
 
   @override
@@ -57,6 +58,7 @@ class _MainPageState extends State<MainPage> {
       PageB(),
       PageC(),
       BaiTapDanhBa(),
+      HomeShoePage(),
       Ui_db(),
     ];
     return Scaffold(
@@ -103,6 +105,7 @@ class _MainPageState extends State<MainPage> {
           ), // index 2
           BottomNavigationBarItem(icon: Icon(Icons.cabin), label: "Page C"),
           BottomNavigationBarItem(icon: Icon(Icons.list), label: "Danh bạ"),
+          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.store), label: "Shoe"),
           BottomNavigationBarItem(
             icon: Icon(Icons.developer_board),
             label: "database",

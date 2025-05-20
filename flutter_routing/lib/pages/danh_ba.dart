@@ -23,11 +23,13 @@ class _BaiTapDanhBaState extends State<BaiTapDanhBa> {
   }
 
   Future<void> loadDataUser() async {
-    var listUserDb = await selectDataUsers();
+    try {
+      var listUserDb = await selectDataUsers();
 
-    setState(() {
-      listUser = listUserDb;
-    });
+      setState(() {
+        listUser = listUserDb;
+      });
+    } catch (exp) {}
   }
 
   @override
