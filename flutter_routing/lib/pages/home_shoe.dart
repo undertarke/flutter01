@@ -16,7 +16,7 @@ class _HomeShoePageState extends State<HomeShoePage> {
     super.initState();
     // then: xử lý thành công
     // catch: xử lý thất bại
-    ProductService.getProduct()
+    ProductService.getProduct("b")
         .then((value) {
           setState(() {
             listProduct = value;

@@ -3,11 +3,9 @@ import 'package:flutter_routing/ultils/environment.dart';
 import 'package:http/http.dart' as http;
 
 class ProductService {
-  static Future<dynamic> getProduct() async {
+  static Future<dynamic> getProduct(keyword) async {
     // url backend cung cấp
-    final url = Uri.parse(
-      "$DOMAIN_API/api/Product?keyword=",
-    );
+    final url = Uri.parse("$DOMAIN_API/api/Product?keyword=$keyword");
     try {
       // kết nối tới API của Backend
       final response = await http.get(url);
@@ -54,4 +52,23 @@ class ProductService {
   // U
 
   // D
+
+  // API get product detail
+  static Future<dynamic> getProductDetail(id) async {
+    // url backend cung cấp
+    final url = Uri.parse("$DOMAIN_API/api/Product/getid?id=$id");
+    try {
+      // kết nối tới API của Backend
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final result = jsonDecode(response.body);
+        return result["content"];
+      } else {
+        throw Exception("Lỗi kết nối API");
+      }
+    } catch (exp) {
+      print(exp);
+      throw Exception("Lỗi kết nối API");
+    }
+  }
 }
