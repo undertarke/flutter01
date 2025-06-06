@@ -1,19 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_routing/bloc/counter/counter_bloc.dart';
 import 'package:flutter_routing/db/ui_db.dart';
+import 'package:flutter_routing/pages/active_state.dart';
 import 'package:flutter_routing/pages/danh_ba.dart';
 import 'package:flutter_routing/pages/home_product.dart';
 import 'package:flutter_routing/pages/home_shoe.dart';
+import 'package:flutter_routing/pages/login_screen.dart';
 
 import 'package:flutter_routing/pages/page_a.dart';
 import 'package:flutter_routing/pages/page_b.dart';
 import 'package:flutter_routing/pages/page_c.dart';
 import 'package:flutter_routing/pages/product_detail.dart';
+import 'package:flutter_routing/pages/show_state.dart';
+import 'package:flutter_routing/providers/provider.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// Provider
+// void main() {
+//   runApp(
+//     MultiProvider(
+//       providers: [ChangeNotifierProvider(create: (context) => DemSoModel())],
+//       child: MyApp(),
+//     ),
+//   );
+// }
+
+// BLoC
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => CounterBloc())],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -46,7 +69,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   var indexPage = 0;
-  var listPage = [HomePage()];
+  var listPage = [HomePage(), LoginScreen(), ActiveState(), ShowState()];
 
   @override
   void initState() {
@@ -102,6 +125,14 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.user),
             label: "Info",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.book),
+            label: "Active state",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.adn),
+            label: "Show state",
           ),
         ],
       ),
