@@ -59,7 +59,13 @@ class ProductService {
     final url = Uri.parse("$DOMAIN_API/api/Product/getid?id=$id");
     try {
       // kết nối tới API của Backend
-      final response = await http.get(url);
+      final response = await http.get(
+        url,
+        headers: {
+          'tokenCybersoft':
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGbHV0dGVyIDAxIiwiSGV0SGFuU3RyaW5nIjoiMDkvMTEvMjAyNSIsIkhldEhhblRpbWUiOiIxNzYyNjQ2NDAwMDAwIiwibmJmIjoxNzM2MTIxNjAwLCJleHAiOjE3NjI4MTkyMDB9.We_FRRLkEJB271FX0Gcjbsfxsnl5YAym7uhkcKXulSQ",
+        },
+      );
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
         return result["content"];
